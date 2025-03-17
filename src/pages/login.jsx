@@ -34,6 +34,7 @@ const Login = () => {
                 setFormData({ loginId: '', password: '' });
                 // Store user data in localStorage
                 localStorage.setItem('user', JSON.stringify(data.user));
+                localStorage.setItem("token",data.token)
                 // Wait for 1 second to show the success message before redirecting
                 setTimeout(() => {
                     navigate('/welcome');

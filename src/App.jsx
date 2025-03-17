@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/login'
 import Register from './pages/register'
 import Welcome from './pages/welcome'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
@@ -14,7 +15,14 @@ function App() {
           <Route path="*" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/welcome" element={<Welcome />} />
+          <Route 
+            path="/welcome" 
+            element={
+              <ProtectedRoute>
+                <Welcome />
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
       </div>
     </Router>

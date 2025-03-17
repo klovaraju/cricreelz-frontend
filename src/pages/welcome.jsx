@@ -1,33 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getUser, logout } from '../utils/auth';
 
 const Welcome = () => {
     const navigate = useNavigate();
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = getUser();
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
+    }, [user, navigate]);
 
     const handleLogout = () => {
-        localStorage.removeItem('user');
+        logout();
         navigate('/login');
     };
 
     if (!user) {
-        navigate('/login');
         return null;
     }
 
     return (
-        <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
-            <div className="text-center">
-                <h1 className="text-3xl font-bold text-gray-800 mb-4">Welcome, {user.username}!</h1>
-                <p className="text-gray-600 mb-6">You have successfully logged in to your account.</p>
-                <button
-                    onClick={handleLogout}
-                    className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition-colors duration-200"
-                >
-                    Logout
-                </button>
-            </div>
+         <div>
+         <div className='bg-green-500 w-screen h-screen rounded-2xl'>
+         <div className='bg-gray-100 rounded-md p-6'>
+         <h1 className='text-left ml-0 my-0'>CricReelz</h1>
+         <button onClick={handleLogout} className='float-right rounded-sm bg-black text-blue font-medium text-white' >logout</button>
         </div>
+       
+        
+         
+         
+         </div>
+        
+         
+         
+         
+         
+         
+         
+         
+         
+         </div>
     );
 };
 
